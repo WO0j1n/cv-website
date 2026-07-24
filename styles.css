@@ -87,3 +87,242 @@ main {
   font-size: 1rem;
   line-height: 1;
 }
+
+/* Hero */
+.hero {
+  padding: var(--space-5) 0 var(--space-4);
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+}
+
+.hero__meta {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.hero__intro {
+  font-size: 1.15rem;
+  margin-top: var(--space-2);
+  max-width: 40ch;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--space-3);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+}
+
+/* Shared section heading */
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+section {
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+/* About */
+.about p {
+  margin-bottom: var(--space-2);
+  max-width: 68ch;
+  color: var(--color-text);
+}
+
+/* Card base (shared by Experience, Projects, Awards) */
+.card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+
+.card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.card__header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.card__period {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.card__org {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-1);
+}
+
+.card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.card li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.95rem;
+}
+
+.card li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* Timeline = bento grid, asymmetric */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.timeline .card:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+/* Reveal-on-scroll — progressive enhancement only.
+   Cards stay fully visible unless JS confirms it's running (html.js) and
+   hasn't yet marked them .reveal--visible, so a failed/blocked/disabled
+   script never hides content. */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+html.js .reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media print {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Projects */
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+
+.card__desc {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+/* Awards & Certificates */
+.awards__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.awards__grid h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+
+/* Contact */
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.contact__link {
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.contact__link:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.footer {
+  text-align: center;
+  padding: var(--space-4) var(--space-3);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .nav__links {
+    gap: var(--space-2);
+    font-size: 0.85rem;
+  }
+
+  .nav__links a:not(:last-of-type) {
+    display: none;
+  }
+
+  .hero {
+    padding: var(--space-4) 0 var(--space-3);
+  }
+
+  .timeline,
+  .projects__grid,
+  .awards__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline .card:nth-child(3) {
+    grid-column: auto;
+  }
+
+  section {
+    padding: var(--space-4) 0;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+}
