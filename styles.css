@@ -338,13 +338,6 @@ html.js .reveal--visible {
   letter-spacing: 0.02em;
 }
 
-.scholarship-table tfoot td {
-  border-bottom: none;
-  border-top: 2px solid var(--color-accent);
-  font-weight: 700;
-  color: var(--color-accent);
-}
-
 /* Contact */
 .contact__links {
   display: flex;
