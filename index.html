@@ -14,9 +14,11 @@
     <span class="nav__name">임우진</span>
     <div class="nav__links">
       <a href="#about">About</a>
+      <a href="#education">Education</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#awards">Awards</a>
+      <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드 전환">🌙</button>
     </div>
@@ -25,7 +27,7 @@
   <main>
     <section id="hero" class="hero">
       <h1>임우진</h1>
-      <p class="hero__meta">정보통신공학과 · 명지대학교 (졸업예정 2026.02) · GPA 4.16 (전공 4.15)</p>
+      <p class="hero__meta">정보통신공학과 · 명지대학교 · 졸업 유예 중 (2027.02 졸업예정) · GPA 4.16 (전공 4.15)</p>
       <p class="hero__meta">연계전공: 인공지능 ICT 융합</p>
       <p class="hero__intro">이미지 복원(Image Restoration)과 초해상화(Super-Resolution)를 연구하는 학부생입니다.</p>
       <div class="tag-row">
@@ -43,23 +45,24 @@
       <p>제 관심 연구 분야는 아래와 같습니다: <strong>Image Restoration</strong>, <strong>SR Image Processing</strong></p>
     </section>
 
-    <section id="experience" class="experience">
-      <h2 class="section-title">Experience</h2>
-      <div class="timeline">
-        <article class="card reveal">
-          <div class="card__header">
-            <h3>WE-IT</h3>
-            <span class="card__period">2024.02 – 2025.02</span>
-          </div>
-          <p class="card__org">대학생 연합 동아리</p>
-          <ul>
-            <li>대학생 연합 동아리 IT부문 6위</li>
-            <li>운영진 - 총무부장</li>
-            <li>데이터 분석 및 머신러닝 Study</li>
-            <li>매주 최신 기술 및 취업 관련 아티클 조사 및 공유</li>
-          </ul>
-        </article>
+    <section id="education" class="education">
+      <h2 class="section-title">Education</h2>
+      <article class="card reveal">
+        <div class="card__header">
+          <h3>명지대학교 (Myongji University)</h3>
+          <span class="card__period">2020.03 – 재학중</span>
+        </div>
+        <p class="card__org">주전공: 정보통신공학과 · 연계전공: 인공지능 ICT 융합</p>
+        <ul>
+          <li>GPA 4.16 / 4.5 (전공 평점 4.15)</li>
+          <li>현재 졸업 유예 중 · 2027.02 졸업예정</li>
+        </ul>
+      </article>
+    </section>
 
+    <section id="experience" class="experience">
+      <h2 class="section-title">Academic Experience</h2>
+      <div class="timeline">
         <article class="card reveal">
           <div class="card__header">
             <h3>명지대학교 DAN Lab</h3>
@@ -100,6 +103,23 @@
       </div>
     </section>
 
+    <section id="additional-experience" class="additional-experience">
+      <h2 class="section-title">Additional Experience</h2>
+      <article class="card reveal">
+        <div class="card__header">
+          <h3>WE-IT</h3>
+          <span class="card__period">2024.02 – 2025.02</span>
+        </div>
+        <p class="card__org">대학생 연합 동아리</p>
+        <ul>
+          <li>대학생 연합 동아리 IT부문 6위</li>
+          <li>운영진 - 총무부장</li>
+          <li>데이터 분석 및 머신러닝 Study</li>
+          <li>매주 최신 기술 및 취업 관련 아티클 조사 및 공유</li>
+        </ul>
+      </article>
+    </section>
+
     <section id="projects" class="projects">
       <h2 class="section-title">Projects</h2>
       <div class="projects__grid">
@@ -118,6 +138,12 @@
             <span class="tag">bge-m3</span>
             <span class="tag">Weaviate DB</span>
           </div>
+          <div class="card__gallery">
+            <span class="card__gallery-label">자세히 보기 ↗</span>
+            <a class="card__thumb-link" href="assets/images/mpick.jpg" target="_blank" rel="noopener noreferrer">
+              <img class="card__thumb" src="assets/images/mpick-thumb.jpg" alt="M-PICK 서비스 화면 스크린샷" loading="lazy" width="240" height="143">
+            </a>
+          </div>
         </article>
 
         <article class="card reveal">
@@ -135,6 +161,12 @@
             <span class="tag">1D-CNN</span>
             <span class="tag">GRU</span>
           </div>
+          <div class="card__gallery">
+            <span class="card__gallery-label">자세히 보기 ↗</span>
+            <a class="card__thumb-link" href="assets/images/smc.jpg" target="_blank" rel="noopener noreferrer">
+              <img class="card__thumb" src="assets/images/smc-thumb.jpg" alt="ROSC 진단 보조 시스템 결과 화면" loading="lazy" width="240" height="165">
+            </a>
+          </div>
         </article>
 
         <article class="card reveal">
@@ -151,12 +183,24 @@
             <span class="tag">LG-BPN</span>
             <span class="tag">CT Restoration</span>
           </div>
+          <div class="card__gallery">
+            <span class="card__gallery-label">자세히 보기 ↗</span>
+            <a class="card__thumb-link" href="assets/images/gist-1.jpg" target="_blank" rel="noopener noreferrer">
+              <img class="card__thumb" src="assets/images/gist-1-thumb.jpg" alt="GIST Image Restoration 결과 1" loading="lazy" width="240" height="115">
+            </a>
+            <a class="card__thumb-link" href="assets/images/gist-2.jpg" target="_blank" rel="noopener noreferrer">
+              <img class="card__thumb" src="assets/images/gist-2-thumb.jpg" alt="GIST Image Restoration 결과 2" loading="lazy" width="240" height="177">
+            </a>
+            <a class="card__thumb-link" href="assets/images/gist-3.jpg" target="_blank" rel="noopener noreferrer">
+              <img class="card__thumb" src="assets/images/gist-3-thumb.jpg" alt="GIST Image Restoration 결과 3 (CT denoising)" loading="lazy" width="240" height="176">
+            </a>
+          </div>
         </article>
       </div>
     </section>
 
     <section id="awards" class="awards">
-      <h2 class="section-title">Awards & Certificates</h2>
+      <h2 class="section-title">Honors & Awards</h2>
       <div class="awards__grid">
         <article class="card reveal">
           <h3>Awards</h3>
@@ -166,17 +210,68 @@
             <li>2024년도 패스트캠퍼스 아이디어 경진대회 특별상</li>
           </ul>
         </article>
-
-        <article class="card reveal">
-          <h3>Certificates</h3>
-          <ul>
-            <li>SQLD — 한국데이터산업진흥원 · 2025.04</li>
-            <li>ADsP — 한국데이터산업진흥원 · 2025.03</li>
-            <li>AICE Associate — KT · 한국경제신문 · 2026.03</li>
-            <li>빅데이터분석기사 — 한국데이터산업진흥원 · 2026.07</li>
-          </ul>
-        </article>
       </div>
+
+      <article class="card reveal scholarship-card">
+        <h3>Scholarships</h3>
+        <div class="table-scroll">
+          <table class="scholarship-table">
+            <thead>
+              <tr>
+                <th>학년도</th>
+                <th>학기</th>
+                <th>장학금명</th>
+                <th>금액</th>
+                <th>지급방식 · 비고</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2024</td><td>1학기</td><td>융합인재장학금</td><td>300,000원</td><td>계좌지급 · 인공지능·ICT융합</td>
+              </tr>
+              <tr>
+                <td>2024</td><td>1학기</td><td>특성화 교육훈련장학금</td><td>1,000,000원</td><td>계좌지급 · ABI-X사업단</td>
+              </tr>
+              <tr>
+                <td>2024</td><td>2학기</td><td>모범장학금 1종</td><td>1,360,000원</td><td>학비감면</td>
+              </tr>
+              <tr>
+                <td>2024</td><td>2학기</td><td>융합인재장학금</td><td>900,000원</td><td>계좌지급 · 인공지능·ICT융합</td>
+              </tr>
+              <tr>
+                <td>2024</td><td>2학기</td><td>특성화 교육훈련장학금</td><td>1,100,000원</td><td>계좌지급 · AI·Bigdata·ICT융합교육사업단(ABI-X사업단)</td>
+              </tr>
+              <tr>
+                <td>2025</td><td>1학기</td><td>모범장학금 1종</td><td>1,430,000원</td><td>학비감면</td>
+              </tr>
+              <tr>
+                <td>2025</td><td>1학기</td><td>학습훈련장학금</td><td>100,000원</td><td>계좌지급</td>
+              </tr>
+              <tr>
+                <td>2025</td><td>2학기</td><td>경기RISE 장학금</td><td>700,000원</td><td>계좌지급</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3">누적 수혜 총액</td>
+                <td colspan="2">6,890,000원</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section id="certifications" class="certifications">
+      <h2 class="section-title">Certifications</h2>
+      <article class="card reveal">
+        <ul>
+          <li>SQLD — 한국데이터산업진흥원 · 2025.04</li>
+          <li>ADsP — 한국데이터산업진흥원 · 2025.03</li>
+          <li>AICE Associate — KT · 한국경제신문 · 2026.03</li>
+          <li>빅데이터분석기사 — 한국데이터산업진흥원 · 2026.07</li>
+        </ul>
+      </article>
     </section>
 
     <section id="contact" class="contact">
