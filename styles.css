@@ -7,10 +7,12 @@ a { color: inherit; text-decoration: none; }
 /* Design tokens */
 :root {
   --color-bg: #FAFAF8;
-  --color-text: #1A1A1A;
-  --color-text-muted: #5A5A5A;
-  --color-accent: #2D3E82;
-  --color-border: #E4E2DC;
+  --color-text: #15202B;
+  --color-text-muted: #52606D;
+  --color-accent: #1E3A5F;
+  --color-secondary: #2563EB;
+  --color-success: #16A34A;
+  --color-border: #E1E4EA;
   --color-card-bg: #FFFFFF;
 
   --font-body: -apple-system, BlinkMacSystemFont, 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
@@ -27,7 +29,9 @@ a { color: inherit; text-decoration: none; }
   --color-bg: #10131A;
   --color-text: #ECECEC;
   --color-text-muted: #9AA1AE;
-  --color-accent: #7C8FE0;
+  --color-accent: #86A8D8;
+  --color-secondary: #7C9CF5;
+  --color-success: #4ADE80;
   --color-border: #262B36;
   --color-card-bg: #171B24;
 }
@@ -78,14 +82,27 @@ main {
 }
 
 .theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: 1px solid var(--color-border);
   border-radius: 999px;
   width: 2rem;
   height: 2rem;
   cursor: pointer;
-  font-size: 1rem;
-  line-height: 1;
+  color: var(--color-text-muted);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
 }
 
 /* Hero */
@@ -106,10 +123,29 @@ main {
   margin-bottom: 0.25rem;
 }
 
+.stat-pill {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  margin: 0 0.1rem;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
 .hero__intro {
   font-size: 1.15rem;
   margin-top: var(--space-2);
-  max-width: 40ch;
+  max-width: 46ch;
+}
+
+.hero__positioning {
+  font-size: 1.3rem;
+  font-weight: 700;
+  max-width: 46ch;
+  margin-top: var(--space-2);
+  letter-spacing: -0.01em;
 }
 
 .tag-row {
@@ -203,6 +239,14 @@ section {
   font-weight: 700;
 }
 
+.additional-line {
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
 /* Timeline = bento grid, asymmetric */
 .timeline {
   display: grid;
@@ -230,10 +274,21 @@ html.js .reveal--visible {
   transform: translateY(0);
 }
 
+@media print, (prefers-reduced-motion: reduce) {
+  html.js .reveal {
+    transition: none;
+  }
+}
+
 @media print {
   .reveal {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .nav,
+  .theme-toggle {
+    display: none !important;
   }
 }
 
@@ -347,16 +402,28 @@ html.js .reveal--visible {
 }
 
 .contact__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.6rem 1.1rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   font-weight: 600;
   font-size: 0.95rem;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 .contact__link:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+.contact__link .icon {
+  flex: 0 0 auto;
+}
+
+.certifications .card li::before {
+  color: var(--color-success);
 }
 
 .footer {
