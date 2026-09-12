@@ -18,9 +18,11 @@
     toggle.setAttribute('aria-label', theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환');
   }
 
+  // Dark is this site's identity (matching the lesgmstudios.com reference),
+  // not just a system-preference fallback — default to it regardless of OS
+  // theme, and only defer to what the visitor explicitly chose before.
   const stored = localStorage.getItem(STORAGE_KEY);
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const initial = stored || (prefersDark ? 'dark' : 'light');
+  const initial = stored || 'dark';
   applyTheme(initial);
 
   toggle.addEventListener('click', function () {
@@ -34,6 +36,17 @@
 (function () {
   const revealEls = document.querySelectorAll('.reveal');
   if (!revealEls.length) return;
+
+  // Stagger cards that reveal together (same parent) so groups cascade in
+  // rather than popping in simultaneously — mirrors the cascading entrance
+  // used on lesgmstudios.com's grid sections.
+  const groups = new Map();
+  revealEls.forEach(function (el) {
+    const key = el.parentElement;
+    const index = groups.get(key) || 0;
+    el.style.setProperty('--reveal-delay', Math.min(index * 0.1, 0.4) + 's');
+    groups.set(key, index + 1);
+  });
 
   const observer = new IntersectionObserver(
     function (entries) {

@@ -1,8 +1,10 @@
 # 임우진 — CV Website
 
 Single-page static CV site. Plain HTML/CSS/JS, no build step, no framework, no external runtime
-dependencies (font falls back to system fonts — see below). See
-`docs/superpowers/specs/2026-07-24-cv-website-design.md` for the full design rationale and
+dependencies (fonts are self-hosted — see below). Visual design is modeled on
+[lesgmstudios.com](https://www.lesgmstudios.com/): a dark, high-contrast editorial look with a bold
+display face for headings and a staggered scroll-reveal on every card. See
+`docs/superpowers/specs/2026-07-24-cv-website-design.md` for the original design rationale and
 `docs/superpowers/plans/2026-07-24-cv-website-plan.md` for how it was built.
 
 ## Local preview
@@ -14,30 +16,16 @@ python3 -m http.server 8811
 
 ## Font
 
-The plan called for self-hosting Pretendard Variable, but the font CDN was unreachable from this
-environment at build time, so the site currently uses a system font stack
-(`-apple-system, BlinkMacSystemFont, 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif`) instead —
-this keeps the zero-external-dependency property (system fonts ship with the OS, no network request
-at all). To switch to Pretendard later:
+Two fonts, both self-hosted under `assets/fonts/` so the strict `font-src 'self'` /
+`style-src 'self'` CSP in `_headers` never has to loosen for an external font CDN:
 
-```bash
-curl -fL "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2" \
-  -o assets/fonts/PretendardVariable.woff2
-```
+- **Clash Display** (weights 600/700) — headings, the hero name, section titles. Free for personal
+  and commercial use via [Fontshare](https://www.fontshare.com/fonts/clash-display).
+- **Geist** (weights 400/500/600/700) — body text and nav. MIT-licensed, from
+  [vercel/geist-font](https://github.com/vercel/geist-font).
 
-Then in `styles.css`, add back:
-
-```css
-@font-face {
-  font-family: 'Pretendard Variable';
-  src: url('assets/fonts/PretendardVariable.woff2') format('woff2-variations');
-  font-weight: 45 920;
-  font-style: normal;
-  font-display: swap;
-}
-```
-
-and change `--font-body` to `'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;`.
+Both fall back to the Korean-aware system stack (`Apple SD Gothic Neo` / `Malgun Gothic`) for glyphs
+they don't cover, since neither ships Hangul.
 
 ## Deploy (Cloudflare Pages, connected to a GitHub repo)
 
