@@ -117,11 +117,23 @@ main {
   border-bottom: 1px solid var(--color-border);
 }
 
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .nav__name {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.15rem;
   letter-spacing: -0.01em;
+}
+
+.nav__mark {
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  color: var(--color-text-muted);
 }
 
 .nav__links {
@@ -182,6 +194,71 @@ main {
 .theme-toggle svg {
   width: 16px;
   height: 16px;
+}
+
+/* Mobile hamburger + full-screen nav overlay */
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 2.1rem;
+  height: 2.1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav__hamburger span {
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav__hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav__hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav__mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: 0 var(--space-4);
+  background: color-mix(in srgb, var(--color-bg) 96%, transparent);
+  backdrop-filter: blur(12px);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav__mobile-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav__mobile-overlay .nav__mobile-cta {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: var(--color-text-muted);
 }
 
 /* Hero — oversized display type, GM-Studios-style scale jump */
@@ -250,6 +327,7 @@ main {
   max-width: 32ch;
   margin-top: var(--space-3);
   letter-spacing: -0.01em;
+  min-height: 2.4em;
   line-height: 1.2;
 }
 
@@ -269,6 +347,94 @@ main {
   font-weight: 500;
   letter-spacing: 0.01em;
   color: var(--color-text-muted);
+}
+
+/* Hero CTA pills — fade in independently of the typewriter, on a short delay */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: var(--space-3);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.cta-row.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.pill:hover {
+  background: var(--color-secondary);
+}
+
+.pill--outline {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-text);
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+.pill--outline:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.pill__icon {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .pill__label {
+    max-width: 46vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Typewriter cursor for the hero positioning line */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  background: currentColor;
+  vertical-align: -0.1em;
+  animation: blink 1s step-end infinite;
+}
+
+.typewriter-cursor.is-done {
+  display: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 /* Shared section heading */
@@ -392,6 +558,10 @@ html.js .reveal--visible {
   html.js .reveal {
     transition: none;
   }
+
+  .cta-row {
+    transition: none;
+  }
 }
 
 @media print {
@@ -401,6 +571,7 @@ html.js .reveal--visible {
   }
 
   .nav,
+  .nav__mobile-overlay,
   .theme-toggle {
     display: none !important;
   }
@@ -569,13 +740,16 @@ html.js .reveal--visible {
 
 /* Responsive */
 @media (max-width: 640px) {
-  .nav__links {
-    gap: var(--space-2);
-    font-size: 0.75rem;
+  .nav__links a {
+    display: none;
   }
 
-  .nav__links a:not(:last-of-type) {
-    display: none;
+  .nav__hamburger {
+    display: flex;
+  }
+
+  .nav__mobile-overlay {
+    display: flex;
   }
 
   .hero {

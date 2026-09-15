@@ -34,6 +34,98 @@
 })();
 
 (function () {
+  const hamburger = document.getElementById('nav-hamburger');
+  const overlay = document.getElementById('nav-mobile-overlay');
+  if (!hamburger || !overlay) return;
+
+  function closeOverlay() {
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function openOverlay() {
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  hamburger.addEventListener('click', function () {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    if (isOpen) closeOverlay();
+    else openOverlay();
+  });
+
+  overlay.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeOverlay);
+  });
+})();
+
+(function () {
+  // Types out the hero positioning statement character by character, with a
+  // blinking cursor — a nod to "restoring signal" one character at a time.
+  const target = document.getElementById('typewriter-target');
+  if (!target) return;
+
+  const textEl = target.querySelector('.typewriter-text');
+  const cursorEl = target.querySelector('.typewriter-cursor');
+  const fullText = target.getAttribute('data-full-text') || '';
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    textEl.textContent = fullText;
+    cursorEl.classList.add('is-done');
+    return;
+  }
+
+  const SPEED_MS = 35;
+  const START_DELAY_MS = 400;
+  let i = 0;
+
+  function tick() {
+    i += 1;
+    textEl.textContent = fullText.slice(0, i);
+    if (i < fullText.length) {
+      setTimeout(tick, SPEED_MS);
+    } else {
+      cursorEl.classList.add('is-done');
+    }
+  }
+
+  setTimeout(tick, START_DELAY_MS);
+})();
+
+(function () {
+  // Hero CTA pills fade in on their own short delay, independent of the
+  // typewriter's pace — they shouldn't wait on it to finish.
+  const ctaRow = document.getElementById('hero-cta-row');
+  if (!ctaRow) return;
+  setTimeout(function () {
+    ctaRow.classList.add('is-visible');
+  }, 400);
+})();
+
+(function () {
+  const copyBtn = document.getElementById('email-copy-btn');
+  if (!copyBtn) return;
+
+  const label = copyBtn.querySelector('.pill__label');
+  const email = copyBtn.getAttribute('data-email') || '';
+  const originalLabel = label.textContent;
+  let resetTimer = null;
+
+  copyBtn.addEventListener('click', function () {
+    navigator.clipboard.writeText(email).then(function () {
+      label.textContent = '복사됨! · ' + email;
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(function () {
+        label.textContent = originalLabel;
+      }, 2000);
+    });
+  });
+})();
+
+(function () {
   const revealEls = document.querySelectorAll('.reveal');
   if (!revealEls.length) return;
 
